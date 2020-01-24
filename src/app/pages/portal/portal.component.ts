@@ -114,6 +114,7 @@ export class PortalComponent implements OnInit, OnDestroy {
   private mapDetailsTool$$: Subscription;
   private activateSearchTool$$: Subscription;
   private activateCatalogTool$$: Subscription;
+  private activateContextTool$$: Subscription;
 
   public igoSearchPointerSummaryEnabled = false;
 
@@ -310,10 +311,13 @@ export class PortalComponent implements OnInit, OnDestroy {
         if (tool.name === 'mapDetails') {
           this.activateSearchTool$$ = this.mapDetailsState.searchToolActivate.subscribe(() => {
             this.toolbox.activateTool('searchResults');
-          })
+          });
           this.activateCatalogTool$$ = this.mapDetailsState.catalogToolActivate.subscribe(() => {
             this.toolbox.activateTool('catalog');
-          })
+          });
+          this.activateContextTool$$ = this.mapDetailsState.contextToolActivate.subscribe(() => {
+            this.toolbox.activateTool('contextManager');
+          });
         }
       }
     })
