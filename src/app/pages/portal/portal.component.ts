@@ -116,6 +116,11 @@ export class PortalComponent implements OnInit, OnDestroy {
   private activateCatalogTool$$: Subscription;
   private activateContextTool$$: Subscription;
 
+  private mapDetailsTool$$: Subscription;
+  private activateSearchTool$$: Subscription;
+  private activateCatalogTool$$: Subscription;
+  private activateContextTool$$: Subscription;
+
   public igoSearchPointerSummaryEnabled = false;
 
   public tableStore = new EntityStore([]);
