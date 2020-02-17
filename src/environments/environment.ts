@@ -35,11 +35,7 @@ export const environment: Environment = {
     app: {
       forceCoordsNA: true
     },
-    auth: {
-      url: '/apis/users',
-      tokenKey: 'id_token_igo',
-      allowAnonymous: true
-    },
+ 
     catalog: {
       sources: [
         {
