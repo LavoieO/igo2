@@ -806,7 +806,6 @@ export class PortalComponent implements OnInit, OnDestroy {
     return visible;
   }
 
-  
   public startTour(){
 
     console.log('tour partie')
@@ -825,6 +824,16 @@ export class PortalComponent implements OnInit, OnDestroy {
     // introJs().onbeforechange(function(targetElement) {  
     this.introJS.onbeforechange(targetElement => {  
       // debugger;
+      
+      if (this.introJS._currentStep === 4){
+        this.introJS._introItems[4].element = document.querySelectorAll('mat-list-item.mat-list-item.mat-list-item-avatar.mat-list-item-with-avatar.ng-star-inserted')[1]
+        this.introJS._introItems[4].position = 'right';
+      }
+      if (this.introJS._currentStep === 5){
+        this.introJS._introItems[5].element = document.querySelectorAll('mat-list-item.mat-list-item.mat-list-item-avatar.mat-list-item-with-avatar.ng-star-inserted')[1]
+        this.introJS._introItems[5].position = 'right';
+      }
+
       if (this.introJS._currentStep === 7){
         // debugger;
         // let elem = 'mat-list.mat-list.mat-list-base.selectable'
@@ -852,8 +861,6 @@ export class PortalComponent implements OnInit, OnDestroy {
         this.introJS._introItems[10].element = document.querySelectorAll('igo-context-item')[0].querySelector('mat-list-item.mat-list-item')
         this.introJS._introItems[10].position = 'right';
 
-
-  
       // if (!targetElement) // if targetElement does not exist
       //   this.introJS().nextStep() // go to the next step
       }
@@ -895,7 +902,6 @@ export class PortalComponent implements OnInit, OnDestroy {
           }
       }
 
-
       if (this.introJS._currentStep === 6){
         // ouvrir outil context
 
@@ -917,9 +923,6 @@ export class PortalComponent implements OnInit, OnDestroy {
         // this.introJS._introItems[4].position = 'right';
         // this.introJS._introItems[5].element = document.querySelector('#fleche');
         // this.introJS._introItems[5].position = 'bottom';
-
-
-
         // this.introJS.refresh();
     }
     if (this.introJS._currentStep === 11){
@@ -930,17 +933,15 @@ export class PortalComponent implements OnInit, OnDestroy {
 
         //   this.contextState.setContext(this.context$$);
         // });
-      }
-
-
-      
+      }   
     });
 
 
+    this.introJS.setOptions(this.configService.getConfig('introOptions'));
 
-
-    this.introJS.setOptions({
-
+    let tesOptionDirect = ({
+      // this.introJS.setOptionstestDirect({
+  
       skipLabel: "<h3 style='color:blue'>Fermer </h3>",
       nextLabel: "<h3 style='color:blue'>suivant</h3>",
       prevLabel: "<h3 style='color:blue'>précédent </h3>",
@@ -959,9 +960,8 @@ export class PortalComponent implements OnInit, OnDestroy {
       overlayOpacity: 0.5,
       scrollTo:'element',
 
-      // tooltipClass:'mat-h2',
+      tooltipClass:'mat-h2',
       // tooltipClass:'test-class',
-
 
       highlightClass:'igo-introjs-helperLayer',
       // buttonClass: "jm-button",
@@ -969,9 +969,7 @@ export class PortalComponent implements OnInit, OnDestroy {
       buttonClass:"mat-raised-button",
       // buttonClass:"introjs-button",
 
-
-      steps: [
-        
+      steps: [ 
         {
           // 0 
           // element: document.querySelector('.menu-button.menu-button.mat-icon-button.ng-tns-c4-0.mat-primary'),
@@ -981,21 +979,18 @@ export class PortalComponent implements OnInit, OnDestroy {
           position: 'right',
           disableInteraction: true,
         },
-
         {
           // 1
           // element: document.querySelector('.igo-search-bar-container'),
           element: '.igo-search-bar-container',
           intro: "BARRE RECHERCHE <br> Saisir un nom de couche ,de ville, d'adresse, point GPS, etc ",
         },
-
         {
           // 2
           // element: document.querySelector('.search-bar-buttons'),
           element: '.search-bar-buttons',
           intro: "OPTIONS DE RECHERCHE<br> Configurer les options comme le nombre de résultats souhaités, le type de résultat, etc. ",
         },
-
         {
           // 3
           // element: document.querySelector('mat-list.mat-list.mat-list-base.ng-star-inserted'),
@@ -1029,7 +1024,6 @@ export class PortalComponent implements OnInit, OnDestroy {
           // element: 'mat-list.mat-list.mat-list-base.selectable',
           intro: "Le panneau ne présente plus la liste des outils mais bien maintenant le contenu de l'outil sélectionné.<br> Dans ce cas-ci, l'outil de CONTEXTE présente la liste des cartes prédéfinies construites selon certaines thématique",
         },
-        
         {
           // 8
           element: 'a setter une fois le menu ouvert',
@@ -1050,7 +1044,6 @@ export class PortalComponent implements OnInit, OnDestroy {
           element: 'rien',
           intro: "dedans simple",
         },
-
         {
           element: document.querySelector('igo-geolocate-button.ng-tns-c4-0.ng-trigger.ng-trigger-controlsOffsetY'),
           intro: "GEOLOCALISATION",

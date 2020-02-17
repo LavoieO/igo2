@@ -29,7 +29,6 @@
 
       "highlightClass":"igo-introjs-helperLayer",
       "buttonClass":"mat-raised-button",
-      "tooltipClass":"mat-h2",
 
       "steps": [
         
@@ -56,12 +55,12 @@
           "position": "right"
         },
         {
-          "element": "problem",
+          "element": "document.querySelectorAll('mat-list-item.mat-list-item.mat-list-item-avatar.mat-list-item-with-avatar.ng-star-inserted')[1]",
           "intro": "LES CONTEXTES<br>Sont l'un des endroits ou l'on retrouve les couches de données. Se sont des regroupements de couche selon des thématiques, des cartes prédéfinies construites pour vous",
           "position": "right"
         },
         {
-          "element": "problem",
+          "element": "document.querySelectorAll('mat-list-item.mat-list-item.mat-list-item-avatar.mat-list-item-with-avatar.ng-star-inserted')[1]",
           "intro": "En sélectionnant CONTEXTE, l'application bascule à l'intérieur et vous affiche les différents contextes disponibles"
         },
         {
