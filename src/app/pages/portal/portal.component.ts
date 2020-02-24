@@ -72,6 +72,8 @@ import {
 } from './portal.animation';
 
 import * as introJs from 'intro.js/intro.js'
+import { Button, ElementFinder } from 'protractor';
+import { debug } from 'util';
 
 @Component({
   selector: 'app-portal',
@@ -809,259 +811,100 @@ export class PortalComponent implements OnInit, OnDestroy {
   public startTour(){
 
     console.log('tour partie')
-    // debugger;
+
 
     this.introJS.oncomplete(function() {
       console.log("fin du tour ");
     });
 
-    this.introJS.onexit(function() {
+
+    this.introJS.onexit( () =>  {
       console.log("le tour a ete fermé");
     });
 
-    let portal=this;
 
-    // introJs().onbeforechange(function(targetElement) {  
+
     this.introJS.onbeforechange(targetElement => {  
-      // debugger;
+
+      let tourNo = this.introJS._currentStep
+      console.log(tourNo);
+
+
+// debugger;
+    //   introJs().addSteps([{
+    //     element: document.querySelectorAll('#step2')[0],
+    //     intro: "Ok, wasn't that fun?",
+    //     position: 'right'
+    // }]);
+      if (tourNo){
+
+        // let elemToHighlight = this.configService.getConfig('introOptions').steps[tourNo];
+        // console.log('step highlight:');
+        // let elem = elemToHighlight.element;
+        // console.log(elemToHighlight)
+
+        // console.log('elem')
+        // console.log(elem)
+
+        if (tourNo===7){
+
+          let element = document.getElementsByTagName('igo-list')
+
+          // let isCollection = HTMLCollection.prototype.isPrototypeOf(element)
+          let unElem:HTMLElement;
+          unElem = document.getElementsByTagName('igo-list')[0] as HTMLElement;
+
+
+          console.log('tessss');
+          console.log(unElem);
+        this.introJS._introItems[tourNo].element = unElem;
+
+        }
+
+
+      // problem with prev Button... if the user back on tour, another click is made and some time that not what you want
+      // no solution found but disable prevButton on tour...
       
-      if (this.introJS._currentStep === 4){
-        this.introJS._introItems[4].element = document.querySelectorAll('mat-list-item.mat-list-item.mat-list-item-avatar.mat-list-item-with-avatar.ng-star-inserted')[1]
-        this.introJS._introItems[4].position = 'right';
+      let actionToMake = this.introJS._introItems[tourNo].action;
+
+
+      if (actionToMake){
+        console.log("substr action") ;
+        console.log(actionToMake.substring(0,11))
+
+
+        if (actionToMake == 'clickOnElem'){
+            targetElement.click()
+       
+        }else if(actionToMake.substring(0,11) === 'clickOnTool'){
+
+
+          let toolNumber = actionToMake.substring(11) ;
+          console.log("tool number =");
+          console.log(toolNumber);
+
+          let element: HTMLElement = document.getElementsByTagName('mat-list-item')[toolNumber] as HTMLElement;
+          element.click();
+          console.log('click ontool');
+        }
       }
-      if (this.introJS._currentStep === 5){
-        this.introJS._introItems[5].element = document.querySelectorAll('mat-list-item.mat-list-item.mat-list-item-avatar.mat-list-item-with-avatar.ng-star-inserted')[1]
-        this.introJS._introItems[5].position = 'right';
-      }
 
-      if (this.introJS._currentStep === 7){
-        // debugger;
-        // let elem = 'mat-list.mat-list.mat-list-base.selectable'
-        // document.querySelectorAll('igo-context-item')[2].querySelector('mat-list-item.mat-list-item')
+    }
 
-        // let test1 = document.querySelector(elem)
-        // /querySelectorAll(elem)
+    })
 
-        // marche pas
-        // let test2 = document.getElementById(elem)
-        // let test3 = document.getElementsByClassName(elem)
-        // let test4 = document.getElementsByName(elem)
 
-        // this.introJS._introItems[7].element = test3
-        this.introJS._introItems[7].element = document.querySelector('mat-list.mat-list.mat-list-base.selectable')
-        this.introJS._introItems[7].position = 'right';
 
-        // let elem = document.querySelectorAll('igo-context-item')[2].querySelector('mat-list-item.mat-list-item')
-        this.introJS._introItems[8].element = document.querySelectorAll('igo-context-item')[0].querySelector('mat-list-item.mat-list-item')
-        this.introJS._introItems[8].position = 'right';
-
-        this.introJS._introItems[9].element = document.querySelectorAll('igo-context-item')[2].querySelector('mat-list-item.mat-list-item')
-        this.introJS._introItems[9].position = 'right';
-
-        this.introJS._introItems[10].element = document.querySelectorAll('igo-context-item')[0].querySelector('mat-list-item.mat-list-item')
-        this.introJS._introItems[10].position = 'right';
-
-      // if (!targetElement) // if targetElement does not exist
-      //   this.introJS().nextStep() // go to the next step
-      }
-    });
+    this.introJS.onafterchange(targetElement => { 
+    })
+      
 
     this.introJS.onchange(targetElement => {
-
-      // debugger;
-      // console.log('this',this.activeTool$$);
-      // console.log(thisactiveTool$$);
-      console.log(`target elem id: ${targetElement.id}`);
-      console.log(`target elem class: ${targetElement.className}`);
-
-      if (this.introJS._currentStep === 0 ){
-        if (this.sidenavOpened){
-          setTimeout(() => {
-            this.toggleSidenav();
-            // IGO.toggleSidenav();
-            }, 800);
-
-          setTimeout(() => {
-            this.toggleSidenav();
-            }, 1500);
-
-        }else{
-
-          setTimeout(() => {
-            this.toggleSidenav();
-            }, 600);
-
-            setTimeout(() => {
-              this.toggleSidenav();
-              }, 1200);
-
-          setTimeout(() => {
-            this.toggleSidenav();
-            }, 2200);
-
-          }
-      }
-
-      if (this.introJS._currentStep === 6){
-        // ouvrir outil context
-
-        console.log('ici');
-        // let activeTool = this.toolbox.activeTool$.value;
-        // debugger;
-
-        let toolContext = this.toolbox.getTool('contextManager');
-        // for (let cle of iter){
-        //   console.log(cle);
-        // }
-
-        this.toolChanged(toolContext);
-        this.toolbox.activateTool('contextManager');
-        // let activeTool = this.toolbox.activeTool$.value;
-        // console.log('ici');
-        
-        // this.introJS._introItems[4].element = document.querySelector('#homeButton');
-        // this.introJS._introItems[4].position = 'right';
-        // this.introJS._introItems[5].element = document.querySelector('#fleche');
-        // this.introJS._introItems[5].position = 'bottom';
-        // this.introJS.refresh();
-    }
-    if (this.introJS._currentStep === 11){
-        // debugger;
-        // let contextDetail = this.contextState.contextService.getDetails();
-        // // this.contextState.contextService.context$.subscribe((context: DetailedContext) => {
-        // //   this.contextState.onContextChange(context);
-
-        //   this.contextState.setContext(this.context$$);
-        // });
-      }   
-    });
+    })
 
 
     this.introJS.setOptions(this.configService.getConfig('introOptions'));
 
-    let tesOptionDirect = ({
-      // this.introJS.setOptionstestDirect({
-  
-      skipLabel: "<h3 style='color:blue'>Fermer </h3>",
-      nextLabel: "<h3 style='color:blue'>suivant</h3>",
-      prevLabel: "<h3 style='color:blue'>précédent </h3>",
-      doneLabel:'Done',
-      positionPrecedence: ['right', 'bottom', 'top', 'left'],
-
-      keyboardNavigation: true,
-      showStepNumbers: true,
-      showBullets: true,
-      showProgress: false,
-      showButtons: true,
-      disableInteraction: true,
-      exitOnOverlayClick: true,
-      helperElementPadding: 2,
-
-      overlayOpacity: 0.5,
-      scrollTo:'element',
-
-      tooltipClass:'mat-h2',
-      // tooltipClass:'test-class',
-
-      highlightClass:'igo-introjs-helperLayer',
-      // buttonClass: "jm-button",
-
-      buttonClass:"mat-raised-button",
-      // buttonClass:"introjs-button",
-
-      steps: [ 
-        {
-          // 0 
-          // element: document.querySelector('.menu-button.menu-button.mat-icon-button.ng-tns-c4-0.mat-primary'),
-          // element: document.querySelector('#menu-button'),
-          element: '#menu-button',
-          intro: "MENU <br> Ouvre et fermer le menu",
-          position: 'right',
-          disableInteraction: true,
-        },
-        {
-          // 1
-          // element: document.querySelector('.igo-search-bar-container'),
-          element: '.igo-search-bar-container',
-          intro: "BARRE RECHERCHE <br> Saisir un nom de couche ,de ville, d'adresse, point GPS, etc ",
-        },
-        {
-          // 2
-          // element: document.querySelector('.search-bar-buttons'),
-          element: '.search-bar-buttons',
-          intro: "OPTIONS DE RECHERCHE<br> Configurer les options comme le nombre de résultats souhaités, le type de résultat, etc. ",
-        },
-        {
-          // 3
-          // element: document.querySelector('mat-list.mat-list.mat-list-base.ng-star-inserted'),
-          element: 'mat-list.mat-list.mat-list-base.ng-star-inserted',
-          intro: "LES OUTILS<br> Les outils disponibles pour la consultation des couches. Sur sélection de l'outil l'application bascule à l'intérieur et vous affiche son contenu",
-          position: 'right',
-        },
-        {
-          // 4
-          // element: document.querySelectorAll('.mat-list-item.mat-list-item.mat-list-item-avatar.mat-list-item-with-avatar.ng-star-inserted')[0],
-          element: document.querySelectorAll('mat-list-item.mat-list-item.mat-list-item-avatar.mat-list-item-with-avatar.ng-star-inserted')[1],
-          intro: "LES CONTEXTES<br>Sont l'un des endroits ou l'on retrouve les couches de données. Se sont des regroupements de couche selon des thématiques, des cartes prédéfinies construites pour vous",
-          position: 'right',
-        },
-        {
-          // 5
-          element: document.querySelectorAll('mat-list-item.mat-list-item.mat-list-item-avatar.mat-list-item-with-avatar.ng-star-inserted')[1],
-          // element: document.querySelector('#homeButton'),
-          intro: "En sélectionnant CONTEXTE, l'application bascule à l'intérieur et vous affiche les différents contextes disponibles",
-        },
-        {
-          // 6
-          // element: document.querySelector('div.igo-panel-title'),
-          element: 'div.igo-panel-title',
-          intro: "Une fois à l'intérieur de l'outil, le titre ainsi que la couleur de l'icone vous indique l'outil sélectionné"
-        },
-        {
-          // 7
-          // element: document.querySelector('mat-list.mat-list.mat-list-base.selectable'),
-          element: 'a setter une fois le menu ouvert',
-          // element: 'mat-list.mat-list.mat-list-base.selectable',
-          intro: "Le panneau ne présente plus la liste des outils mais bien maintenant le contenu de l'outil sélectionné.<br> Dans ce cas-ci, l'outil de CONTEXTE présente la liste des cartes prédéfinies construites selon certaines thématique",
-        },
-        {
-          // 8
-          element: 'a setter une fois le menu ouvert',
-          intro: "Ici vous avez le contexte SIMPLE qui contient plusieurs couches",
-        },
-        {
-          // 9
-          element: 'a setter une fois le menu ouvert',
-          intro: "et ici le contexte FILTRE TEMPOREL qui contient un autre regroupement de couche.<br> Les couches peuvent donc se retrouver à l'intérieur de plusieurs context tout dépent de la thématique",
-        },
-        {
-          // 10
-          element: 'rien',
-          intro: "Sélectionnons le contexte SIMPLE",
-        },
-        {
-          // 11
-          element: 'rien',
-          intro: "dedans simple",
-        },
-        {
-          element: document.querySelector('igo-geolocate-button.ng-tns-c4-0.ng-trigger.ng-trigger-controlsOffsetY'),
-          intro: "GEOLOCALISATION",
-          position: 'top',
-        },
-        {
-          element: document.querySelector('igo-user-button.ng-tns-c18-1.ng-tns-c4-0.ng-trigger.ng-trigger-controlsOffsetY.ng-star-inserted'),
-          intro: "USER",
-          position: 'top',
-        },
-        {
-          element: document.querySelector('igo-baselayers-switcher'),
-          intro: "BASE LAYER SWITCH",
-          position: 'top',
-        },
-
-      ]
-    });
   
     this.introJS.start();
   }

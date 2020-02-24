@@ -10,8 +10,8 @@
   "introOptions" :{
    
       "skipLabel": "<h3 style='color:blue'>Fermer </h3>",
-      "nextLabel": "<h3 style='color:blue'>suivant</h3>",
-      "prevLabel": "<h3 style='color:blue'>précédent </h3>",
+      "nextLabel": "<h3 style='color:blue'>Suivant</h3>",
+      "prevLabel": "enlever",
       "doneLabel": "Done",
       "positionPrecedence": ["right", "bottom", "top", "left"],
 
@@ -23,9 +23,9 @@
       "disableInteraction": true,
       "exitOnOverlayClick": true,
       "helperElementPadding": 2,
-
+      "scrollToElement":true,
+      "scrollTo": "element",
       "overlayOpacity": 0.5,
-      "scrollTo":"element",
 
       "highlightClass":"igo-introjs-helperLayer",
       "buttonClass":"mat-raised-button",
@@ -37,7 +37,14 @@
           "element": "#menu-button",
           "intro": "MENU <br> Ouvre et fermer le menu",
           "position": "right",
-          "disableInteraction": true
+          "disableInteraction": false
+        },
+        {
+          "element": "#menu-button",
+          "intro": "MENU CLICK<br> En appuyant sur le bouton menu, le menu général ouvre",
+          "position": "right",
+          "disableInteraction": false,
+          "action": "clickOnElem"
         },
 
         {
@@ -51,17 +58,22 @@
         },
 
         {
-          "element": "mat-list.mat-list.mat-list-base.ng-star-inserted",
+          "element": "igo-toolbox",
          "intro": "LES OUTILS<br> Les outils disponibles pour la consultation des couches. Sur sélection de l'outil l'application bascule à l'intérieur et vous affiche son contenu",
           "position": "right"
         },
         {
-          "element": "problem",
+          "element": "igo-actionbar-item:nth-child(2)",
           "intro": "LES CONTEXTES<br>Sont l'un des endroits ou l'on retrouve les couches de données. Se sont des regroupements de couche selon des thématiques, des cartes prédéfinies construites pour vous",
           "position": "right"
         },
         {
-          "element": "problem",
+          "element": "igo-toolbox",
+          "intro": "click on contexte bascule dans la liste de contexte",
+          "action": "clickOnTool1"
+        },
+        {
+          "element": "igo-list",
           "intro": "En sélectionnant CONTEXTE, l'application bascule à l'intérieur et vous affiche les différents contextes disponibles"
         },
         {
