@@ -824,10 +824,76 @@ export class PortalComponent implements OnInit, OnDestroy {
 
 
 
-    this.introJS.onbeforechange(targetElement => {  
+    this.introJS.onbeforechange(targetElement => { 
+
 
       let tourNo = this.introJS._currentStep
-      console.log(tourNo);
+      console.log('tourNo')
+      console.log(tourNo)
+
+      console.log(targetElement.className )
+
+      // When the element doesn't exist when you start tour 
+      // we need to set it when it exist
+      if (targetElement.className.indexOf("introjsFloatingElement") !== -1) {
+        console.log('target = elem doesnt exist');
+
+        let currentStepConfig = this.configService.getConfig('introOptions').steps[tourNo]
+        let currentElemConfig = currentStepConfig.element;
+        let currentPositionElemConfig = currentStepConfig.position;
+
+        let unElem:HTMLElement;
+        unElem = document.getElementsByTagName(currentElemConfig)[0] as HTMLElement;
+        
+        // debugger;
+        if(!unElem){
+          console.log('elem est vide avec tagName');
+          unElem = document.getElementsByClassName(currentElemConfig)[0] as HTMLElement;
+          if(!unElem){
+              console.log('elem est vide avec ClassName');
+              unElem = document.querySelector(currentElemConfig);
+              if(!unElem){
+                console.log('elem est vide avec querySelector');
+              }else{
+                console.log('elem est OK avec QuerySelector');
+                this.introJS._introItems[tourNo].element = unElem;
+                this.introJS._introItems[tourNo].position = currentPositionElemConfig;
+              }
+              
+          }else{
+              console.log('elem est OK avec ClassName');
+              this.introJS._introItems[tourNo].element = unElem;
+              this.introJS._introItems[tourNo].position = currentPositionElemConfig;
+          }
+
+        }else{
+          console.log('est OK avec tagName');
+          this.introJS._introItems[tourNo].element = unElem;
+          this.introJS._introItems[tourNo].position = currentPositionElemConfig;
+      } 
+    }
+
+
+
+    })
+      // let tourNo = this.introJS._currentStep
+      // if(tourNo>0){
+
+      // let currentStep = this.configService.getConfig('introOptions').steps[tourNo]
+      // console.log('current step:');
+      // console.log(currentStep);
+
+      // this.introJS.addSteps([currentStep])
+
+    // }
+  // })
+
+
+
+    this.introJS.onchange(targetElement => {  
+
+      let tourNo = this.introJS._currentStep
+      // console.log(tourNo);
 
 
 // debugger;
@@ -846,20 +912,36 @@ export class PortalComponent implements OnInit, OnDestroy {
         // console.log('elem')
         // console.log(elem)
 
-        if (tourNo===7){
+        // if (tourNo===7){
+        //   // debugger;
 
-          let element = document.getElementsByTagName('igo-list')
+        //   let element = document.getElementsByTagName('igo-list')
+        //   let element2 = document.querySelector('igo-list')
+        //   console.log('tesss elem1:')
+        //   console.log(element)
+        //   console.log('tesss elem2:')
+        //   console.log(element2)
+        //   // let isCollection = HTMLCollection.prototype.isPrototypeOf(element)
+        //   let unElem:HTMLElement;
+        //   // unElem = document.getElementsByTagName('igo-list')[0] as HTMLElement;
+        //   // this.introJS._introItems[7].element = unElem;
+        //   this.introJS._introItems[7].element = document.getElementsByTagName('igo-list')[0] as HTMLElement;
+        //   console.log('apres')
+        //   debugger;
+        // }
+        
+//         if (tourNo===8){
 
-          // let isCollection = HTMLCollection.prototype.isPrototypeOf(element)
-          let unElem:HTMLElement;
-          unElem = document.getElementsByTagName('igo-list')[0] as HTMLElement;
+//           let element = document.getElementsByTagName('igo-panel-title')
+// debugger;
+//           // let isCollection = HTMLCollection.prototype.isPrototypeOf(element)
+//           let unElem:HTMLElement;
+//           unElem = document.getElementsByTagName('igo-panel-title')[0] as HTMLElement;
 
+//           console.log(unElem);
+//           this.introJS._introItems[tourNo].element = unElem;
 
-          console.log('tessss');
-          console.log(unElem);
-        this.introJS._introItems[tourNo].element = unElem;
-
-        }
+//         }
 
 
       // problem with prev Button... if the user back on tour, another click is made and some time that not what you want
@@ -886,6 +968,7 @@ export class PortalComponent implements OnInit, OnDestroy {
           let element: HTMLElement = document.getElementsByTagName('mat-list-item')[toolNumber] as HTMLElement;
           element.click();
           console.log('click ontool');
+          // this.introJS.nextStep();
         }
       }
 
@@ -898,10 +981,6 @@ export class PortalComponent implements OnInit, OnDestroy {
     this.introJS.onafterchange(targetElement => { 
     })
       
-
-    this.introJS.onchange(targetElement => {
-    })
-
 
     this.introJS.setOptions(this.configService.getConfig('introOptions'));
 

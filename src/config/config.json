@@ -34,12 +34,14 @@
       "steps": [
         
         {
+          "no": 0,
           "element": "#menu-button",
           "intro": "MENU <br> Ouvre et fermer le menu",
           "position": "right",
           "disableInteraction": false
         },
         {
+          "no": 1,
           "element": "#menu-button",
           "intro": "MENU CLICK<br> En appuyant sur le bouton menu, le menu général ouvre",
           "position": "right",
@@ -48,58 +50,70 @@
         },
 
         {
+          "no": 2,
           "element": ".igo-search-bar-container",
           "intro": "BARRE RECHERCHE <br> Saisir un nom de couche ,de ville, d'adresse, point GPS, etc"
         },
 
         {
+          "no": 3,
           "element": ".search-bar-buttons",
           "intro": "OPTIONS DE RECHERCHE<br> Configurer les options comme le nombre de résultats souhaités, le type de résultat, etc."
         },
 
         {
-          "element": "igo-toolbox",
+          "no": 4,
+          "element": ".igo-toolbox",
          "intro": "LES OUTILS<br> Les outils disponibles pour la consultation des couches. Sur sélection de l'outil l'application bascule à l'intérieur et vous affiche son contenu",
           "position": "right"
         },
         {
+          "no": 5,
           "element": "igo-actionbar-item:nth-child(2)",
           "intro": "LES CONTEXTES<br>Sont l'un des endroits ou l'on retrouve les couches de données. Se sont des regroupements de couche selon des thématiques, des cartes prédéfinies construites pour vous",
           "position": "right"
         },
         {
-          "element": "igo-toolbox",
-          "intro": "click on contexte bascule dans la liste de contexte",
+          "no": 6,
           "action": "clickOnTool1"
         },
         {
+          "no": 7,
           "element": "igo-list",
           "intro": "En sélectionnant CONTEXTE, l'application bascule à l'intérieur et vous affiche les différents contextes disponibles"
+       
         },
         {
-          "element": "div.igo-panel-title",
+          "no": 8,
+          "element": ".igo-panel-title",
           "intro": "Une fois à l'intérieur de l'outil, le titre ainsi que la couleur de l'icone vous indique l'outil sélectionné"
+
         },
         {
-          "element": "a setter une fois le menu ouvert",
+          "no": 9,
+          "element": "igo-context-list",
           "intro": "Le panneau ne présente plus la liste des outils mais bien maintenant le contenu de l'outil sélectionné.<br> Dans ce cas-ci, l'outil de CONTEXTE présente la liste des cartes prédéfinies construites selon certaines thématique"
         },
         
         {
-          "element": "a setter une fois le menu ouvert",
+          "no": 10,
+          "element": "igo-context-item",
           "intro": "Ici vous avez le contexte SIMPLE qui contient plusieurs couches"
+
         },
         {
-          "element": "a setter une fois le menu ouvert",
+          "no": 11,
+          "element": "igo-context-item:nth-child(3) mat-list-item",
           "intro": "et ici le contexte FILTRE TEMPOREL qui contient un autre regroupement de couche.<br> Les couches peuvent donc se retrouver à l'intérieur de plusieurs context tout dépent de la thématique"
         },
         {
-          "element": "rien",
+          "no": 12,
+          "element": "igo-context-item:nth-child(1)",
           "intro": "Sélectionnons le contexte SIMPLE"
         },
         {
-          "element": "rien",
-          "intro": "dedans simple"
+          "no": 13,
+          "action": "clickOnContext"
         },
 
         {
