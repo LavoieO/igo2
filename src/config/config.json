@@ -35,14 +35,14 @@
         
         {
           "no": 0,
-          "element": "#menu-button",
+          "element": "menu-button",
           "intro": "MENU <br> Ouvre et fermer le menu",
           "position": "right",
           "disableInteraction": false
         },
         {
           "no": 1,
-          "element": "#menu-button",
+          "element": "menu-button",
           "intro": "MENU CLICK<br> En appuyant sur le bouton menu, le menu général ouvre",
           "position": "right",
           "disableInteraction": false,
@@ -51,19 +51,19 @@
 
         {
           "no": 2,
-          "element": ".igo-search-bar-container",
+          "element": "igo-search-bar-container",
           "intro": "BARRE RECHERCHE <br> Saisir un nom de couche ,de ville, d'adresse, point GPS, etc"
         },
 
         {
           "no": 3,
-          "element": ".search-bar-buttons",
+          "element": "search-bar-buttons",
           "intro": "OPTIONS DE RECHERCHE<br> Configurer les options comme le nombre de résultats souhaités, le type de résultat, etc."
         },
 
         {
           "no": 4,
-          "element": ".igo-toolbox",
+          "element": "igo-toolbox",
          "intro": "LES OUTILS<br> Les outils disponibles pour la consultation des couches. Sur sélection de l'outil l'application bascule à l'intérieur et vous affiche son contenu",
           "position": "right"
         },
@@ -108,24 +108,30 @@
         },
         {
           "no": 12,
-          "element": "igo-context-item:nth-child(1)",
-          "intro": "Sélectionnons le contexte SIMPLE"
+          "element": "igo-context-item:nth-child(3)",
+          "intro": "Sélectionnons le contexte FILTRE TEMPOREL"
         },
         {
           "no": 13,
-          "action": "clickOnContext"
+          "action": "clickOnContext2"
+        },
+        {
+          "no": 14,
+          "element": "igo-list",
+          "intro": "Une fois le contexte sélectionné, LA CARTE affiche maintenant la liste de couches contenues dans le contexte choisi"
+        },
+        {
+          "no": 15,
+          "element": "button",
+          "intro": "BOG - Bouton pour faire afficher la couche"
         },
 
         {
-          "element": "igo-geolocate-button.ng-tns-c4-0.ng-trigger.ng-trigger-controlsOffsetY",
+          "element": "igo-geolocate-button",
           "intro": "GEOLOCALISATION",
           "position": "top"
         },
-        {
-          "element": "igo-user-button.ng-tns-c18-1.ng-tns-c4-0.ng-trigger.ng-trigger-controlsOffsetY.ng-star-inserted",
-          "intro": "USER",
-          "position": "top"
-        },
+
         {
           "element": "igo-baselayers-switcher",
           "intro": "BASE LAYER SWITCH",

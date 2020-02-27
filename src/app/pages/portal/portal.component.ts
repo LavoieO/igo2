@@ -893,87 +893,35 @@ export class PortalComponent implements OnInit, OnDestroy {
     this.introJS.onchange(targetElement => {  
 
       let tourNo = this.introJS._currentStep
-      // console.log(tourNo);
-
-
-// debugger;
-    //   introJs().addSteps([{
-    //     element: document.querySelectorAll('#step2')[0],
-    //     intro: "Ok, wasn't that fun?",
-    //     position: 'right'
-    // }]);
       if (tourNo){
 
-        // let elemToHighlight = this.configService.getConfig('introOptions').steps[tourNo];
-        // console.log('step highlight:');
-        // let elem = elemToHighlight.element;
-        // console.log(elemToHighlight)
+        // problem with prev Button... if the user back on tour, another click is made and some time that not what you want
+        // no solution found but disable prevButton on tour...
+        let actionToMake = this.introJS._introItems[tourNo].action;
 
-        // console.log('elem')
-        // console.log(elem)
+        if (actionToMake){
+          // console.log("substr action") ;
+          // console.log(actionToMake.substring(0,14))
+          let element: HTMLElement;
 
-        // if (tourNo===7){
-        //   // debugger;
-
-        //   let element = document.getElementsByTagName('igo-list')
-        //   let element2 = document.querySelector('igo-list')
-        //   console.log('tesss elem1:')
-        //   console.log(element)
-        //   console.log('tesss elem2:')
-        //   console.log(element2)
-        //   // let isCollection = HTMLCollection.prototype.isPrototypeOf(element)
-        //   let unElem:HTMLElement;
-        //   // unElem = document.getElementsByTagName('igo-list')[0] as HTMLElement;
-        //   // this.introJS._introItems[7].element = unElem;
-        //   this.introJS._introItems[7].element = document.getElementsByTagName('igo-list')[0] as HTMLElement;
-        //   console.log('apres')
-        //   debugger;
-        // }
+          if (actionToMake == 'clickOnElem'){
+              targetElement.click();
         
-//         if (tourNo===8){
+          }else if(actionToMake.substring(0,11) === 'clickOnTool'){
 
-//           let element = document.getElementsByTagName('igo-panel-title')
-// debugger;
-//           // let isCollection = HTMLCollection.prototype.isPrototypeOf(element)
-//           let unElem:HTMLElement;
-//           unElem = document.getElementsByTagName('igo-panel-title')[0] as HTMLElement;
+            let toolIndex = actionToMake.substring(11) ;
+            element = document.getElementsByTagName('mat-list-item')[toolIndex] as HTMLElement;
+            element.click();
+            console.log('click ontool');
 
-//           console.log(unElem);
-//           this.introJS._introItems[tourNo].element = unElem;
-
-//         }
-
-
-      // problem with prev Button... if the user back on tour, another click is made and some time that not what you want
-      // no solution found but disable prevButton on tour...
-      
-      let actionToMake = this.introJS._introItems[tourNo].action;
-
-
-      if (actionToMake){
-        console.log("substr action") ;
-        console.log(actionToMake.substring(0,11))
-
-
-        if (actionToMake == 'clickOnElem'){
-            targetElement.click()
-       
-        }else if(actionToMake.substring(0,11) === 'clickOnTool'){
-
-
-          let toolNumber = actionToMake.substring(11) ;
-          console.log("tool number =");
-          console.log(toolNumber);
-
-          let element: HTMLElement = document.getElementsByTagName('mat-list-item')[toolNumber] as HTMLElement;
-          element.click();
-          console.log('click ontool');
-          // this.introJS.nextStep();
+          }else if(actionToMake.substring(0,14) == 'clickOnContext'){
+            let contextIndex = actionToMake.substring(14) ;
+            element= document.getElementsByTagName('igo-context-item')[contextIndex] as HTMLElement;
+            element.click();
+            console.log('click onContext');
+          }
         }
       }
-
-    }
-
     })
 
 
@@ -981,9 +929,7 @@ export class PortalComponent implements OnInit, OnDestroy {
     this.introJS.onafterchange(targetElement => { 
     })
       
-
     this.introJS.setOptions(this.configService.getConfig('introOptions'));
-
   
     this.introJS.start();
   }
