@@ -5,40 +5,40 @@
 }
 
 
-.introjs-helperNumberLayer{
-  position:relative !important;
-  top:0px !important;
-  left: 90% !important;
-  border-radius: 0% !important;
-  padding:6px !important;
+// .introjs-helperNumberLayer{
+//   position:relative !important;
+//   top:0px !important;
+//   left: 90% !important;
+//   border-radius: 0% !important;
+//   padding:6px !important;
 
-}
+// }
 
-.introjs-overlay{
-  background-color: transparent !important;
-    // display: none !important;
+// .introjs-overlay{
+//   background-color: transparent !important;
+//     // display: none !important;
 
-}
+// }
 
 
-.igo-introjs-helperLayer:before {
-  /* opacity: 0; */
-  content: '' !important;
-  position: fixed !important;
-  width: inherit !important;
-  height: inherit !important;
-  border-radius: 0.5em !important;
-  border: .2em solid rgba(255, 217, 68, 0.8) !important;
-  box-shadow: 0 0 0 1000em rgba(0, 0, 0, 0.6) !important;
-  // box-shadow: 0 0 0 1000em rgba(0,0,0, .7) !important;
-  // opacity: 1 !important;
-}
+// .igo-introjs-helperLayer:before {
+//   /* opacity: 0; */
+//   content: '' !important;
+//   position: fixed !important;
+//   width: inherit !important;
+//   height: inherit !important;
+//   border-radius: 0.5em !important;
+//   border: .2em solid rgba(255, 217, 68, 0.8) !important;
+//   box-shadow: 0 0 0 1000em rgba(0, 0, 0, 0.6) !important;
+//   // box-shadow: 0 0 0 1000em rgba(0,0,0, .7) !important;
+//   // opacity: 1 !important;
+// }
 
-.igo-introjs-helperLayer {
-  background: transparent !important;
-  // border: 3px solid black !important;
-  // opacity: 0 !important;
-}
+// .igo-introjs-helperLayer {
+//   background: transparent !important;
+//   // border: 3px solid black !important;
+//   // opacity: 0 !important;
+// }
 
 
 

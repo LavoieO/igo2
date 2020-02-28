@@ -34,8 +34,8 @@ export class TourService {
       let tourNo = this.introJS._currentStep
       console.log('tourNo')
       console.log(tourNo)
-
       console.log(targetElement.className )
+
 
       // When the element doesn't exist when you start tour 
       // we need to set it when it exist
@@ -92,9 +92,16 @@ export class TourService {
           // console.log(actionToMake.substring(0,14))
           let element: HTMLElement;
 
-          if (actionToMake == 'clickOnElem'){
-              targetElement.click();
-        
+          if (actionToMake == 'clickOnMenu'){
+              let elemMenuBut:HTMLElement = document.querySelector('#menu-button') as HTMLElement; 
+              elemMenuBut.click();
+              let elemHomeBut:HTMLElement;
+              elemHomeBut =  document.querySelector('#homeButton') as HTMLElement;
+              elemHomeBut.click();
+          
+          }else if (actionToMake == 'clickOnElem'){
+                targetElement.click();
+
           }else if(actionToMake.substring(0,11) === 'clickOnTool'){
 
             let toolIndex = actionToMake.substring(11) ;
