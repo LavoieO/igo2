@@ -31,7 +31,7 @@ import {
   Tool
 } from '@igo2/common';
 import { AuthService } from '@igo2/auth';
-import { TourService } from './tour-service'
+import { InteractiveTourService } from './tour-service'
 
 import { DetailedContext } from '@igo2/context';
 import {
@@ -264,7 +264,7 @@ export class PortalComponent implements OnInit, OnDestroy {
     private searchSourceService: SearchSourceService,
     private searchService: SearchService,
     private configService: ConfigService,
-    private tourService: TourService
+    private interactiveTourService: InteractiveTourService
   ) {
     this.hasExpansionPanel = this.configService.getConfig('hasExpansionPanel');
     this.forceCoordsNA = this.configService.getConfig('forceCoordsNA');
@@ -813,8 +813,8 @@ export class PortalComponent implements OnInit, OnDestroy {
 
   public startTour(){
 
-    console.log('tour partie')
-    this.tourService.startTour();
+    console.log('tour partie');
+    this.interactiveTourService.startTour('global');
 
   }
 

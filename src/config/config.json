@@ -8,31 +8,31 @@
   "hasExpansionPanel": false,
 
   "introOptions" :{
-   
+
       "skipLabel": "<h3 style='color:blue'>Fermer </h3>",
       "nextLabel": "<h3 style='color:blue'>Suivant</h3>",
-      "prevLabel": "enlever",
-      "doneLabel": "Done",
+      "prevLabel": "",
+      "doneLabel": "Terminé",
+      "hidePrev": true,
+      "hideNext": true,
       "positionPrecedence": ["right", "bottom", "top", "left"],
 
       "keyboardNavigation": true,
-      "showStepNumbers": true,
+      "showStepNumbers": false,
       "showBullets": true,
       "showProgress": false,
       "showButtons": true,
       "disableInteraction": true,
-      "exitOnOverlayClick": true,
+      "exitOnOverlayClick": false,
       "helperElementPadding": 2,
       "scrollToElement":true,
       "scrollTo": "element",
-      "overlayOpacity": 0.5,
-
       "highlightClass":"igo-introjs-helperLayer",
       "buttonClass":"mat-raised-button",
       "tooltipClass":"mat-h2",
 
       "steps": [
-        
+
         {
           "no": 0,
           "element": "menu-button",
@@ -70,24 +70,24 @@
         {
           "no": 5,
           "element": "igo-actionbar-item:nth-child(2)",
-          "intro": "LES CONTEXTES<br>Sont l'un des endroits ou l'on retrouve les couches de données. Se sont des regroupements de couche selon des thématiques, des cartes prédéfinies construites pour vous",
+          "intro": "LES CONTEXTES<br> sont des regroupements de couche selon des thématiques, des cartes prédéfinies construites pour vous. C'est l'un des endroits ou l'on retrouve les couches de données.",
           "position": "right"
 
         },
         {
           "no": 6,
           "element": ".igo-panel-title",
-          "intro": "En sélectionnant l'outil CONTEXTE, l'application bascule à l'intérieur de l'outil. Le titre ainsi que la couleur de l'icone vous indique l'outil sélectionné",
+          "intro": "En sélectionnant l'outil CONTEXTE, l'application bascule à l'intérieur. Le titre ainsi que la couleur de l'icone vous indique quel outil est sélectionné",
           "action": "clickOnTool1"
         },
-    
+
         {
           "no": 7,
           "element": "igo-context-list",
           "intro": "Une fois à l'intérieur des CONTEXTES, l'outil affiche la liste des cartes prédéfinies construites selon certaines thématique. "
         },
 
-        
+
         {
           "no": 8,
           "element": "igo-context-item",
@@ -107,18 +107,13 @@
         {
           "no": 11,
           "element": "igo-map-browser",
-          "intro": "Une fois le contexte sélectionné, l'application bascule dans le contexte choisi et LA CARTE affiche maintenant les couches contenu dans ce contexte",
+          "intro": "L'application bascule alors à l'intérieur du contexte choisi et LA CARTE affiche maintenant les couches contenu dans ce contexte",
           "action": "clickOnContext2"
         },
         {
           "no": 12,
           "element": "igo-list",
-          "intro": "La liste de couches contenu dans le contexte est alors affichée. On remarque que ceraine sont actives(visible) dans la care et d'autres non (oeil noir barré) "
-        },
-        {
-          "no": 13,
-          "element": "button",
-          "intro": "BOG - Bouton pour faire afficher la couche"
+          "intro": "La liste de couches qui constitue le contexte est alors affichée. On remarque que certaine sont actives et donc visible dans la carte. Les couches non actives sont indiquées par un oeil noir barré. "
         },
 
         {
